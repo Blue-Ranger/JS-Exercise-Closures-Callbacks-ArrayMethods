@@ -221,9 +221,10 @@ function isItAnApple(strings) {
 */
 function removeApple(strings) {
   /* code here */
-  return strings.filter(strings => {
-    return strings !== 'apple'
-  })
+  let remApple = strings.filter((item) => {
+    return (item != 'apple');
+  });
+  return remApple;
 }
 
 
