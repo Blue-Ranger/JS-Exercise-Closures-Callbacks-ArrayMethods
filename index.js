@@ -142,7 +142,9 @@ function processProduct(num1, num2, callback) {
 */
 function processDuplicateFree(list, callback) {
   /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
-  
+
+return list.filter((item, index) => { return list.indexOf(item) === index; });
+
 }
 
 
@@ -219,7 +221,11 @@ function isItAnApple(strings) {
 */
 function removeApple(strings) {
   /* code here */
+  return strings.filter(strings => {
+    return strings !== 'apple'
+  })
 }
+
 
 
 /**
@@ -237,8 +243,12 @@ function removeApple(strings) {
  * 
  * [2] Invoking `stringSmash` with `['a', 'b', 'c' ]` will return `abc`.
 */
-function stringSmash(/* code here */) {
+function stringSmash(strings) {
   /* code here */
+  const smash = strings.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue;
+  });
+  return smash;
 }
 
 // A local community center is holding a fund raising 5k fun run and has invited
