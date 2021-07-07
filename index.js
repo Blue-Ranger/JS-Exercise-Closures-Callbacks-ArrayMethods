@@ -48,9 +48,11 @@ function processFirstItem(stringList, callback) {
  * [2] Invoking `processLength` passing `[]` and `(num) => "There are " + num`,
  * should return "There are 0".
 */
-function processLength(/* CODE HERE */) {
+function processLength(list, callback) {
   /* CODE HERE */
+  return callback(list.length);
 }
+
 
 /**
  * ### Challenge `processLastItem`
@@ -66,9 +68,11 @@ function processLength(/* CODE HERE */) {
  * Invoking `processLastItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'barbar'.
 */
-function processLastItem(/* CODE HERE */) {
+function processLastItem(stringList, callback) {
   /* CODE HERE */
+  return callback(stringList[stringList.length - 1]);
 }
+
 
 /**
  * ### Challenge `processSum`
@@ -88,9 +92,11 @@ function processLastItem(/* CODE HERE */) {
  * [2] Invoking `processSum` passing `-5`, '-1', and `(num) => num + 1000`,
  * should return 994.
 */
-function processSum(/* CODE HERE */) {
+function processSum(num1, num2, callback) {
   /* CODE HERE */
+return callback(num1 + num2);
 }
+
 
 /**
  * ### Challenge `processProduct`
@@ -110,9 +116,11 @@ function processSum(/* CODE HERE */) {
  * [2] Invoking `processProduct` passing 25 and 0 and `(num) => num + 1000`,
  * should return 1000.
 */
-function processProduct(/* CODE HERE */) {
+function processProduct(num1, num2, callback) {
   /* CODE HERE */
+  return callback(num1 * num2);
 }
+
 
 /**
  * ### Challenge `processDuplicateFree`
@@ -132,9 +140,13 @@ function processProduct(/* CODE HERE */) {
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
  * should return 3.
 */
-function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */) {
+function processDuplicateFree(list, callback) {
   /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
+
+return list.filter((item, index) => { return list.indexOf(item) === index; });
+
 }
+
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
@@ -155,9 +167,16 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * 
  * [2] Invoking `lowerCaseStrings` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
-function lowerCaseStrings(/* code here */) {
+function lowerCaseStrings(strings) {
   /* code here */
+  let stringNames = [];
+
+  strings.forEach(currentValue => {
+    stringNames.push(currentValue.toLowerCase());
+})
+return stringNames;
 }
+
 
 /**
  * ### Challenge `isItAnApple`
@@ -174,9 +193,15 @@ function lowerCaseStrings(/* code here */) {
  * 
  * [2] Invoking `isItAnApple` with `['a', 'b', 'c' ]` will return `[ false, false, false ]`.
 */
-function isItAnApple(/* code here */) {
+function isItAnApple(strings) {
   /* code here */
+  return (strings.map((item) => {
+    if(item === 'apple'){
+      return true;
+    } else {return false;}
+    }));
 }
+
 
 /**
  * ### Challenge `removeApple`
@@ -194,9 +219,15 @@ function isItAnApple(/* code here */) {
  * 
  * [2] Invoking `removeApple` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
-function removeApple(/* code here */) {
+function removeApple(strings) {
   /* code here */
+  let remApple = strings.filter((item) => {
+    return (item != 'apple');
+  });
+  return remApple;
 }
+
+
 
 /**
  * ### Challenge `stringSmash`
@@ -213,8 +244,12 @@ function removeApple(/* code here */) {
  * 
  * [2] Invoking `stringSmash` with `['a', 'b', 'c' ]` will return `abc`.
 */
-function stringSmash(/* code here */) {
+function stringSmash(strings) {
   /* code here */
+  const smash = strings.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue;
+  });
+  return smash;
 }
 
 // A local community center is holding a fund raising 5k fun run and has invited
@@ -232,9 +267,16 @@ function stringSmash(/* code here */) {
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
-function getFullNames(/* CODE HERE */) {
-  /* CODE HERE */
+function getFullNames(runners) {
+  let arrayNames = [];
+
+  runners.forEach((currentValue) => {
+    arrayNames.push(`${currentValue.last_name}, ${currentValue.first_name}`);
+  });
+
+  return arrayNames;
 }
+
 
 /**
  * ### Challenge `firstNamesAllCaps`
@@ -248,9 +290,14 @@ function getFullNames(/* CODE HERE */) {
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
-function firstNamesAllCaps(/* CODE HERE */) {
-  /* CODE HERE */
+function firstNamesAllCaps(runners) {
+  let newArray = runners.map(function(currentValue) {
+    return currentValue.first_name.toUpperCase();
+  });
+
+  return newArray;
 }
+
 
 /**
  * ### Challenge `getRunnersByTShirtSize`
@@ -266,9 +313,13 @@ function firstNamesAllCaps(/* CODE HERE */) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
-function getRunnersByTShirtSize(/* CODE HERE */) {
-  /* CODE HERE */
+function getRunnersByTShirtSize(runners, tShirtSize) {
+  let arrayRunnersBySize = runners.filter((currentValue) => {
+    return currentValue.shirt_size === tShirtSize;
+  });
+  return arrayRunnersBySize;
 }
+
 
 /**
  * ### Challenge `tallyUpDonations`
@@ -281,9 +332,15 @@ function getRunnersByTShirtSize(/* CODE HERE */) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-function tallyUpDonations(/* CODE HERE */) {
+function tallyUpDonations(runners) {
   /* CODE HERE */
+  let Sum = runners.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue.donation;
+  }, 0);
+
+  return Sum;
 }
+
 
 /////////////// CLOSURES ///////////////
 /////////////// CLOSURES ///////////////
@@ -340,9 +397,22 @@ function counter2() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(/* CODE HERE */) {
+function counterMakerWithLimit(maxValue) {
   /* CODE HERE */
+  let count = 0;
+  return function() {
+    console.log(count);
+    if (count < maxValue) {
+      console.log("if");
+      return count++;
+    } else {
+      console.log("else");
+      count = 0;
+      return maxValue;
+    }
+  };
 }
+
 
 /////////////// END OF CHALLENGE ///////////////
 /////////////// END OF CHALLENGE ///////////////
